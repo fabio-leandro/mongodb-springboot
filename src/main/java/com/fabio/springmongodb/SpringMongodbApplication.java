@@ -23,6 +23,8 @@ public class SpringMongodbApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
+		userRepository.deleteAll();
+
 		User user = new User(null,"Fábio","fabio@gmail.com");
 		User user1 = new User(null, "Paula", "paula@gmail.com");
 		User user2 = new User(null, "Carol", "carol@gmail.com");

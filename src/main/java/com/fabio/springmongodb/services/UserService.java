@@ -18,4 +18,9 @@ public class UserService {
         return userRepository.findAll().stream()
                 .map(UserDto::new).collect(Collectors.toList());
     }
+
+    public UserDto findById(String id) {
+        return userRepository.findById(id).map(UserDto::new)
+                .orElseThrow(() -> new ObjectNotFoundException("User not found with id -> "+id));
+    }
 }

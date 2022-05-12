@@ -1,5 +1,6 @@
 package com.fabio.springmongodb.services;
 
+import com.fabio.springmongodb.domain.User;
 import com.fabio.springmongodb.dtos.UserDto;
 import com.fabio.springmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +23,13 @@ public class UserService {
     public UserDto findById(String id) {
         return userRepository.findById(id).map(UserDto::new)
                 .orElseThrow(() -> new ObjectNotFoundException("User not found with id -> "+id));
+    }
+
+    public User insert(User user){
+       return userRepository.save(user);
+    }
+
+    public User fromDto(UserDto userDto){
+        return new User(userDto.getId(),userDto.getName(), userDto.getEmail());
     }
 }

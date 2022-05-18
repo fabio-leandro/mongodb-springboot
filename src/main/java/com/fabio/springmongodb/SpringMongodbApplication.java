@@ -49,5 +49,9 @@ public class SpringMongodbApplication implements CommandLineRunner {
 
 		postRepository.saveAll(List.of(post1,post2));
 
+		user.getPosts().addAll(List.of(post1,post2));
+
+		userRepository.save(user);
+
 	}
 }

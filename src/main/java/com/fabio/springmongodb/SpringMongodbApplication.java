@@ -3,6 +3,7 @@ package com.fabio.springmongodb;
 import com.fabio.springmongodb.domain.Post;
 import com.fabio.springmongodb.domain.User;
 import com.fabio.springmongodb.dtos.AuthorDto;
+import com.fabio.springmongodb.dtos.CommentDto;
 import com.fabio.springmongodb.repository.PostRepository;
 import com.fabio.springmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,13 @@ public class SpringMongodbApplication implements CommandLineRunner {
 
 		Post post1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem","Vou viajar para São Paulo.Abraços.", new AuthorDto(user));
 		Post post2 = new Post(null,sdf.parse("23/03/2018"), "Bom dia","Hoje eu acordei feliz", new AuthorDto(user));
+
+		CommentDto c1 = new CommentDto("Boa viagem mano", sdf.parse("21/03/2018"), new AuthorDto(user1));
+		CommentDto c2 = new CommentDto("Aproveite", sdf.parse("22/03/2018"), new AuthorDto(user2));
+		CommentDto c3 = new CommentDto("Tenha um ótimo dia!", sdf.parse("22/03/2018"), new AuthorDto(user1));
+
+		post1.getComments().addAll(List.of(c1,c2));
+		post1.getComments().addAll(List.of(c3));
 
 		postRepository.saveAll(List.of(post1,post2));
 

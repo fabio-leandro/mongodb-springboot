@@ -1,11 +1,14 @@
 package com.fabio.springmongodb.domain;
 
 import com.fabio.springmongodb.dtos.AuthorDto;
+import com.fabio.springmongodb.dtos.CommentDto;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Document
@@ -20,6 +23,8 @@ public class Post implements Serializable {
     private String body;
     private AuthorDto author;
 
+    private List<CommentDto> comments = new ArrayList<>();
+
     public Post(){}
 
     public Post(String id, Date date, String title, String body, AuthorDto author) {
@@ -28,6 +33,18 @@ public class Post implements Serializable {
         this.title = title;
         this.body = body;
         this.author = author;
+    }
+
+    public List<CommentDto> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDto> comments) {
+        this.comments = comments;
+    }
+
+    public AuthorDto getAuthor() {
+        return author;
     }
 
     public String getId() {

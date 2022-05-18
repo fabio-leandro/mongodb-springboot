@@ -25,6 +25,11 @@ public class UserService {
                 .orElseThrow(() -> new ObjectNotFoundException("User not found with id -> "+id));
     }
 
+    public User findPostById(String id){
+        return userRepository.findById(id)
+                .orElseThrow(()->new ObjectNotFoundException("User not found with id -> "+id));
+    }
+
     public User insert(User user){
        return userRepository.save(user);
     }

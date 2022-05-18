@@ -1,5 +1,6 @@
 package com.fabio.springmongodb.resources;
 
+import com.fabio.springmongodb.domain.Post;
 import com.fabio.springmongodb.domain.User;
 import com.fabio.springmongodb.dtos.UserDto;
 import com.fabio.springmongodb.services.UserService;
@@ -26,6 +27,11 @@ public class UserController {
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> getById(@PathVariable String id){
         return ResponseEntity.ok(userService.findById(id));
+    }
+
+    @GetMapping("/{id}/posts")
+    public ResponseEntity<List<Post>> getPostsById(@PathVariable String id){
+        return ResponseEntity.ok(userService.findPostById(id).getPosts());
     }
 
     @PostMapping

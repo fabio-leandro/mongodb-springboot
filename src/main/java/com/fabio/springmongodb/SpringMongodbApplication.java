@@ -2,6 +2,7 @@ package com.fabio.springmongodb;
 
 import com.fabio.springmongodb.domain.Post;
 import com.fabio.springmongodb.domain.User;
+import com.fabio.springmongodb.dtos.AuthorDto;
 import com.fabio.springmongodb.repository.PostRepository;
 import com.fabio.springmongodb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,11 @@ public class SpringMongodbApplication implements CommandLineRunner {
 		User user1 = new User(null, "Paula", "paula@gmail.com");
 		User user2 = new User(null, "Carol", "carol@gmail.com");
 
-		Post post1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem","Vou viajar para São Paulo.Abraços.", user);
-		Post post2 = new Post(null,sdf.parse("23/03/2018"), "Bom dia","Hoje eu acordei feliz", user);
-
 		userRepository.saveAll(List.of(user,user1,user2));
+
+		Post post1 = new Post(null,sdf.parse("21/03/2018"), "Partiu viagem","Vou viajar para São Paulo.Abraços.", new AuthorDto(user));
+		Post post2 = new Post(null,sdf.parse("23/03/2018"), "Bom dia","Hoje eu acordei feliz", new AuthorDto(user));
+
 		postRepository.saveAll(List.of(post1,post2));
 
 	}

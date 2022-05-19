@@ -27,4 +27,14 @@ public class PostController {
         List<Post> list = postService.findByTitles(text);
         return ResponseEntity.ok(list);
     }
+
+    @GetMapping("/title")
+    public ResponseEntity<List<Post>> findTitle(@RequestParam(value = "text") String text){
+        text = URL.decodeParam(text);
+        List<Post> list = postService.findTitles(text);
+        return ResponseEntity.ok(list);
+    }
+
+
+
 }
